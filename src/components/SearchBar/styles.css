@@ -1,0 +1,14 @@
+
+.search-box {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  margin-top: 25px;
+  height: 30px;
+  border-radius: 26px;
+  outline: none;
+  border: 1px solid#eff3f7;
+  padding: 0 10px;
+  margin-right: 8px;
+}
