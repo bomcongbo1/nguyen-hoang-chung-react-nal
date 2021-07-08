@@ -1,7 +1,6 @@
 import {IAction} from '../../interface';
 import {
   ACTION_BLOGS_SUCCESS,
-  NEW_PAGGING_BLOGS,
   NEW_PAGGING_BLOGS_SUCCESS,
   SHOW_BLOG_SUCCESS,
 } from '../actions/blogAction';
@@ -16,6 +15,7 @@ const initData = {
 
 const blogReducer = (state = initData, {type, payload}: IAction) => {
   console.log(`blogReducer type: ${type} with payload: ${payload}`);
+  console.log(`blogReducer state:  `, state);
   switch (type) {
     case ACTION_BLOGS_SUCCESS:
       return {

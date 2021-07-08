@@ -16,7 +16,7 @@ function App() {
           <Home />
         </Route> */}
         <Route exact path="/" component={Blog}/>
-        <Route exact path="/blog/:id" component={Details} />
+        <Route path="/detail/:id" children={<Details/>} />
       </div>
     </Router>
     // <div className="App">

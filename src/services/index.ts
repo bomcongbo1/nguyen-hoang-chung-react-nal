@@ -1,12 +1,12 @@
-/* eslint-disable import/no-anonymous-default-export */
-import http from "../utils/http-common";
+import { ApiClient } from "../utils/http-common";
+
 
 const getAllBlogs = () => {
-  return http.get(`/blogs`);
+  return ApiClient.get(`/blogs`);
 };
 
-const getByBlogsId = (id: number) => {
-  return http.get(`/blogs/${id}`);
+const getByBlogsId = (id: any) => {
+  return ApiClient.get(`/blogs/${id}`);
 };
 export default {getAllBlogs, getByBlogsId };
   

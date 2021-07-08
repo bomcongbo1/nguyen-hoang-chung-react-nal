@@ -4,7 +4,7 @@ import { Pagination } from 'react-bootstrap';
 interface Props {
   item: any[];
 }
-const Pagging = (props? : Props) => {
+const Pagging = (props : any) => {
     return (
         <div >
           <Pagination>           
