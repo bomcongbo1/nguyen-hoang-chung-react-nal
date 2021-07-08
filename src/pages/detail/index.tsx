@@ -1,4 +1,5 @@
 import React from 'react';
+import ItemBlog from '../../components/ItemBlog';
 
 const Details = () => {   
     return(
@@ -7,6 +8,7 @@ const Details = () => {
           Edit <code>src/Details.tsx</code> and save to reload.
         </p>
 
+        <ItemBlog/>
         </div>    
     ) 
 }

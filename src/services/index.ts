@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import http from "../utils/http-common";
 
 const getAllBlogs = () => {

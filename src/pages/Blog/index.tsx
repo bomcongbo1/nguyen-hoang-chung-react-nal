@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ItemBlog from '../../components/ItemBlog';
 import Pagging from '../../components/Pagging';
 import SearchBar from '../../components/SearchBar';
@@ -13,7 +14,9 @@ const Blog = (props: any) => {
             </p>
         <ItemBlog/>
         <ItemBlog/>
-        <ItemBlog/>
+        <Link to="/:id">
+            <ItemBlog/>
+        </Link>
         <Pagging  {...props}/>
 
         </div>    

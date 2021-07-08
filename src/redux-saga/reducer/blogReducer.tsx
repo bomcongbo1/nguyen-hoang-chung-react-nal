@@ -1,4 +1,4 @@
-import {IAction} from '../../../interface';
+import {IAction} from '../../interface';
 import {
   ACTION_BLOGS_SUCCESS,
   NEW_PAGGING_BLOGS,

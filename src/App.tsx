@@ -6,17 +6,17 @@ import {
 } from 'react-router-dom';
 import Home from './pages/home';
 import Blog from './pages/Blog';
+import Details from './pages/detail';
 
 function App() {
   return (
     <Router>
       <div>        
-        <Route exact path="/">
+        {/* <Route exact path="/">
           <Home />
-        </Route>
-        <Route exact path="/blog">
-          <Blog />
-        </Route>
+        </Route> */}
+        <Route exact path="/" component={Blog}/>
+        <Route exact path="/blog/:id" component={Details} />
       </div>
     </Router>
     // <div className="App">
