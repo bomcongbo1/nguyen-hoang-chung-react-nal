@@ -1,4 +1,5 @@
 import React from 'react';
+import { Breadcrumb, Container, Jumbotron } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ItemBlog from '../../components/ItemBlog';
@@ -16,20 +17,37 @@ const Blog = ( props: Props) => {
         props.dispatchAction(actionShowBlogItem(id))
     }
 
-    return(
-        <div className="App">
-        <SearchBar />  
-          <p>
-              Edit <code>src/Blog.tsx</code> and save to reload.
-            </p>
+    return(      
+      
+      <Container className="p-3">
+        <Jumbotron>
+          <h1 className="header">
+            Welcome To React-Bootstrap TypeScript Example
+          </h1>
+        </Jumbotron>
+      <h2>SearchBar</h2>
+      <SearchBar />
         <ItemBlog {...item} />
         <ItemBlog  {...item} />
-        <Link to="/detail/1" onClick={() => handleGetById(1)}>
-            <ItemBlog {...item} />
+        <Link to="/detail/5" onClick={() => handleGetById(1)}>
+          <ItemBlog {...item} />
         </Link>
-        <Pagging  {...props}/>
+      <h2>Pagging</h2>
+      <Pagging  {...props}/>
+      </Container>
+        // <div className="App">
+        // <SearchBar />  
+        //   <p>
+        //       Edit <code>src/Blog.tsx</code> and save to reload.
+        //     </p>
+        // <ItemBlog {...item} />
+        // <ItemBlog  {...item} />
+        // <Link to="/detail/5" onClick={() => handleGetById(1)}>
+        //     <ItemBlog {...item} />
+        // </Link>
+        // <Pagging  {...props}/>
 
-        </div>    
+        // </div>    
     ) 
 }
 
