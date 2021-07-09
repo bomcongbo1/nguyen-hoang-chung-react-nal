@@ -10,8 +10,7 @@ interface Props {
 }
 const ItemBlog = ({ image, title, createdAt, content} :Props) => {
     return (
-      // <ul className="list-unstyled">
-        <Media as="li" style={{ backgroundColor: 'pink'}}>
+        <Media as="li" style={{paddingLeft: 20}}>
           <img
             width={64}
             height={64}
@@ -26,14 +25,6 @@ const ItemBlog = ({ image, title, createdAt, content} :Props) => {
             </p>
           </Media.Body>
         </Media>
-      // </ul>
-  //   <Card style={{ width: '18rem' }}>
-  //   <Card.Img variant="top" src={image} />
-  //   <Card.Body>
-  //     <Card.Title>{title }</Card.Title>
-  //     <Card.Text>{content} </Card.Text>
-  //   </Card.Body>
-  // </Card>
     )
 }
 

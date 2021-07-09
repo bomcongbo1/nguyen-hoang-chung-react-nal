@@ -11,6 +11,8 @@ const initData = {
   blogItem: {},
   page: 0,
   size: 10,
+  totalElements: 0,
+  totalPages: 0,
 };
 
 const blogReducer = (state = initData, {type, payload}: IAction) => {
@@ -22,6 +24,8 @@ const blogReducer = (state = initData, {type, payload}: IAction) => {
         ...state,
         blogList: payload.blogList,
         pageBlog: payload.pageBlog,
+        totalElements: payload.totalElements,
+        totalPages: payload.totalPages,
       };
     case NEW_PAGGING_BLOGS_SUCCESS:
       return {

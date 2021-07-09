@@ -21,12 +21,22 @@ function* doShowBlog(payload:any): Generator<StrictEffect> {
   });  
 }
 
-function* doGetListBlog(payload:any): Generator<StrictEffect> {
-  let blogList = API.getAllBlogs();
+function* doGetListBlog(): Generator<StrictEffect> {
+  let blogList: any =  yield call(API.getAllBlogs);
+  let pageBlog = blogList.filter( (e: any, i: any) => i < 10);
+  let totalElements = blogList.length;
+  let check = totalElements % 10;
+  let totalPages = 0;
+  if (check > 0) {
+    totalPages = ((totalElements - check)/10) + 1;
+  } else totalPages = totalElements/10;
   yield put({
     type: ACTION_BLOGS_SUCCESS,
     payload: {
       blogList: blogList,
+      pageBlog: pageBlog,
+      totalElements: blogList.length,
+      totalPages: totalPages,
     },
   }); 
 }
@@ -44,7 +54,7 @@ function* doNewListBlog(payload:any): Generator<StrictEffect> {
 export default function* (action: IAction) {
   switch (action.type) {
     case SHOW_BLOG: yield call(doShowBlog, action.payload); break;
-    case ACTION_BLOGS: yield call(doGetListBlog, action.payload); break;
+    case ACTION_BLOGS: yield call(doGetListBlog); break;
     case NEW_PAGGING_BLOGS: yield call(doNewListBlog, action.payload); break;  
     default: throw new Error('Error===');
   }

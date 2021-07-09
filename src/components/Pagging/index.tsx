@@ -2,9 +2,11 @@ import React from 'react';
 import { Pagination } from 'react-bootstrap';
 
 interface Props {
-  item: any[];
+  totalPages: number;
+  totalElements: number;
 }
 const Pagging = (props : any) => {
+    
     return (
         <div >
           <Pagination>           

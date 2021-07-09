@@ -11,20 +11,12 @@ interface Props {
 
 const Details = ({dispatchAction, blogReducer}: Props) => {
   let  { id } : any = useParams();
-  const [details, setDetails] = useState({});
-
-  // useEffect(() => {
-  //   console.log(`id useParams:  `, id);
-  //   return dispatchAction(actionShowBlogItem(id));
-  // }, []);
-    console.log(`blogItem:  `, blogReducer.blogItem);
-
-  useEffect(() => {
-    // console.log(`blogItem:  `, blogReducer.blogItem);
-    if (blogReducer.blogItem['id'] != undefined) {
-      return setDetails(blogReducer.blogItem);
-    }
-  }, [])
+  console.log(`id useParams:  `, id);
+  useEffect(() => { // didmount
+    dispatchAction(actionShowBlogItem(id));  
+  },[]);
+  
+  const details = blogReducer.blogItem;
   return (
     <div className="App">
     <p>
