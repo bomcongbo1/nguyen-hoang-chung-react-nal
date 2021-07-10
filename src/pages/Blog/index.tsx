@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Breadcrumb, Container, Jumbotron, Button } from 'react-bootstrap';
+import { Breadcrumb, Container, Jumbotron, Button, Media } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import ItemBlog from '../../components/ItemBlog';
 import Pagging from '../../components/Pagging';
 import SearchBar from '../../components/SearchBar';
+import Header from '../../components/Header';
 import { IReducer } from '../../interface';
 import { actionGetListBlogs, actionShowBlogItem } from '../../redux-saga/actions/blogAction';
 // const item = {id:"1",createdAt:"2020-09-09T01:25:32.504Z",title:"Books Shores AGP",image:"http://lorempixel.com/640/480/people",content:"Use the primary SSL transmitter, then you can synthesize the 1080p port!"}
@@ -16,53 +17,39 @@ const Blog = ( props: Props) => {
     useEffect(() => { // didmount
         props.dispatchAction(actionGetListBlogs());  
     },[]);
-    const handleGetById = (id :any) => {
-        props.dispatchAction(actionShowBlogItem(id))
-    }
-    let blogList = props.blogReducer.blogList;
-    const [pageBlog, setPageBlog] = useState(props.blogReducer.pageBlog);
-    console.log('-------pageBlog-------',pageBlog)
-    console.log('-------blogList-------',blogList)
-    console.log('-------blogReducer-------',props.blogReducer)
-
-
     
-  //   useEffect(() => { // didUpdate
-  //     if(blogList.lenght > 0) {
-  //       setPageBlog(blogList);
-  //     }
-  // },[pageBlog]);
+    const history = useHistory();
+    const handleRoute = (id : number) => {
+      history.push(`/detail/${id}`);
+    } 
+    // let blogList = props.blogReducer.blogList;
+    let pageBlog = props.blogReducer.pageBlog;
+    const [page, setPage] = useState(pageBlog);
+    
+    let location = useLocation();
+    useEffect(() => { // didUpdate
+      // console.log('-------pageBlog-------',pageBlog)
+      // console.log('-------blogList-------',blogList)
+      // console.log('-------blogReducer-------',props.blogReducer)  
+      setPage(pageBlog);
+    },[pageBlog, location]);  
 
-    return(      
-      
+    return(
       <Container className="p-3">
-        <Jumbotron>
-          <h1 className="header">
-            Welcome To React-Bootstrap TypeScript Example
-          </h1>
-        </Jumbotron>
-      <h2>SearchBar</h2>
-      <SearchBar />
-        {pageBlog.map((item: any, index: number) => {
+        <Header/>
+        {page.map((item: any, index: number) => {
           return (          
-            <Link style={{ margin: 10,}} to={`/detail/${index+1}`}>
+            <Media key={index} style={{ margin: 10, border: 1, borderColor: 'black'}} onClick={() => handleRoute(index+1)}>
               <ItemBlog {...item} />
-            </Link>
+            </Media>
           )
         }) }
-        {/* <ItemBlog {...item} />
-        <ItemBlog  {...item} />
-        <Link to="/detail/5" onClick={() => handleGetById(5)}>
-          <ItemBlog {...item} />
-        </Link> */}
-      <h2>Pagging</h2>
-      <Pagging totalElements={props.blogReducer.totalElements} totalPages={props.blogReducer.totalPages}/>
+      <Pagging {...props.blogReducer}/>
       </Container>  
     ) 
 }
 
 const mapStateToProps = (state: IReducer) => {
-  console.log('000====', state.blogReducer)
   return {
     blogReducer: state.blogReducer,
   };

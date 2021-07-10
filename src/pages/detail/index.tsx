@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import ItemBlog from '../../components/ItemBlog';
 import { IReducer } from '../../interface';
 import { actionShowBlogItem } from '../../redux-saga/actions/blogAction';
@@ -15,6 +15,11 @@ const Details = ({dispatchAction, blogReducer}: Props) => {
   useEffect(() => { // didmount
     dispatchAction(actionShowBlogItem(id));  
   },[]);
+  
+  let location = useLocation();
+  useEffect(() => {
+    console.log(`useLocation location:  `, location);
+  }, [location]);
   
   const details = blogReducer.blogItem;
   return (

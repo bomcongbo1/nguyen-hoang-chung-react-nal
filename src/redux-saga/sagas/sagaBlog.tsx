@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import {call, put, StrictEffect} from 'redux-saga/effects';
+import {call, put, select, StrictEffect} from 'redux-saga/effects';
 import { IAction } from '../../interface';
 import API from '../../services';
 import {
@@ -20,6 +20,7 @@ function* doShowBlog(payload:any): Generator<StrictEffect> {
     },
   });  
 }
+const getState = (state: any) => state.blogReducer;
 
 function* doGetListBlog(): Generator<StrictEffect> {
   let blogList: any =  yield call(API.getAllBlogs);
@@ -42,11 +43,24 @@ function* doGetListBlog(): Generator<StrictEffect> {
 }
 
 function* doNewListBlog(payload:any): Generator<StrictEffect> {
-  let blogList: any[] = [];
+  
+  const state: any = yield select(getState);
+  console.log('-------------payload---', payload)
+  console.log('-------------state---', state)
+  // defaul size = 10
+  let pageBlog: any[] = state.blogList.filter( (e: any, i: any) => {
+    if (payload > 0) {
+      const iLast = payload*10;
+      const iFirst = (payload-1)*10;
+      return iFirst <= i && i <iLast;     
+    } else return i < 10;
+  });
+
   yield put({
     type: NEW_PAGGING_BLOGS_SUCCESS,
     payload: {
-      blogList: blogList,
+      pageBlog: pageBlog,
+      page: payload,
     },
   });
 }

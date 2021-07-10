@@ -9,10 +9,11 @@ const initData = {
   blogList: [],
   pageBlog: [],
   blogItem: {},
-  page: 0,
-  size: 10,
+  page: 1,
+  // size: 10,
   totalElements: 0,
   totalPages: 0,
+  currentPage: 0,
 };
 
 const blogReducer = (state = initData, {type, payload}: IAction) => {
@@ -31,6 +32,7 @@ const blogReducer = (state = initData, {type, payload}: IAction) => {
       return {
         ...state,
         pageBlog: payload.pageBlog,
+        page: payload.page,
       };
     case SHOW_BLOG_SUCCESS:
       return {

@@ -12,7 +12,8 @@ function App() {
   return (
     <Router>
       <div>
-        <Route exact path="/" component={Blog}/>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/blog" component={Blog}/>
         <Route path="/detail/:id" children={<Details/>} />
       </div>
     </Router>
