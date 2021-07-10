@@ -19,7 +19,7 @@ const ItemBlog = ({ image, title, createdAt, content} :Props) => {
             alt="Generic placeholder"
           />
           <Media.Body>
-            <h5>{title }</h5>
+            <h5>{title}</h5>
             <p>
               {content}
             </p>

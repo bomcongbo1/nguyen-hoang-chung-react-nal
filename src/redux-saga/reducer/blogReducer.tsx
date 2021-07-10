@@ -18,7 +18,6 @@ const initData = {
 
 const blogReducer = (state = initData, {type, payload}: IAction) => {
   console.log(`blogReducer type: ${type} with payload: ${payload}`);
-  console.log(`blogReducer state:  `, state);
   switch (type) {
     case ACTION_BLOGS_SUCCESS:
       return {

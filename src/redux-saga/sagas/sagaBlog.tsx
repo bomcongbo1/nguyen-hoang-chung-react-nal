@@ -45,8 +45,6 @@ function* doGetListBlog(): Generator<StrictEffect> {
 function* doNewListBlog(payload:any): Generator<StrictEffect> {
   
   const state: any = yield select(getState);
-  console.log('-------------payload---', payload)
-  console.log('-------------state---', state)
   // defaul size = 10
   let pageBlog: any[] = state.blogList.filter( (e: any, i: any) => {
     if (payload > 0) {

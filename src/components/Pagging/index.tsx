@@ -12,9 +12,6 @@ interface Props {
 
 
 const Pagging = ({totalElements, totalPages, page, dispatchAction} : Props) => {
-  // console.log('--------totalPages--------', totalPages)
-  // console.log('--------totalElements--------', totalElements)
-  // console.log('--------page--------', page)
   let arr = [];
   if (totalPages > 0) {
     for (let i = 1; i <= totalPages; i++) {
